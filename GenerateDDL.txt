@@ -1,0 +1,26 @@
+#!/bin/sh
+
+rm OP_DDL -f
+rm OP_DDL1 -f
+rm OP_DDL_COL -f
+numaddr=1
+numphone=1
+
+
+rm OP_DDL.csv -f
+rm OPDDL -f
+
+echo "City String, Name String, Sex String, Visitdate Timestamp" > OPDDL1
+for numaddr in {1..250}; do
+  echo ",Address"$numaddr" String" >> OPDDL
+done
+
+for numphone in {1..246}; do
+   echo ",Phone"$numphone" String" >> OPDDL
+done
+
+awk -F ","  '{printf $0}' OPDDL  > OP_DDL
+
+cat OPDDL1 OP_DDL >> OP_DDL_COL
+~                                                                                         
+~                                                                                         
