@@ -1,0 +1,45 @@
+
+#!/bin/sh
+
+rm SampleOPFile.csv -f
+
+echo "Toronto,Chris,M,2017-01-01 10:30:20" >> SampleOPFile.csv
+echo "Toronto,Mary,F,2017-01-01 11:05:30" >> SampleOPFile.csv
+echo "Toronto,Jack,F,2017-02-02 10:05:55" >> SampleOPFile.csv
+echo "Oakville,Sam,M,2017-03-01 12:00:00" >> SampleOPFile.csv
+echo "Burlington,Amal,M,2017-03-01 12:10:00" >> SampleOPFile.csv
+echo "Burlington,Kiran,M,2017-04-04 10:25:00" >> SampleOPFile.csv
+echo "Mississauga,Kamal,M,2017-05-05 02:30:20" >> SampleOPFile.csv
+echo "Mississauga,Ann,F,2017-05-05 03:15:10" >> SampleOPFile.csv
+echo "Toronto,Chris,M,2017-10-10 11:35:41" >> SampleOPFile.csv
+echo "Oakville,Leela,F,2017-10-11 04:45:00" >> SampleOPFile.csv
+
+rm OPFile.csv -f
+for((numrow=1;numrow<=5000;numrow++));do
+  cat SampleOPFile.csv >> OPFile.csv
+done
+
+numaddr=1
+numphone=1
+
+rm OPAddr1 -f
+rm OPFileExt1.csv -f
+rm OPFileExt.csv -f
+rm OPExtInfo -f
+
+for numaddr in {1..250}; do
+  echo ",Address"$numaddr >> OPExtInfo
+done
+
+for numphone in {1..246}; do
+   echo ",Phone"$numphone >> OPExtInfo
+done
+
+awk  '{printf $1}' OPExtInfo  >OPFileExt1.csv
+
+for ((numrow=1;numrow<=50000;numrow++)); do
+  cat OPFileExt1.csv >>  OPFileExt.csv
+ echo "\n" >>OPFileExt.csv
+done
+
+paste OPFile.csv OPFileExt.csv > OutPatients.csv
