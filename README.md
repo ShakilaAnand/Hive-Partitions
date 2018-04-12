@@ -1,6 +1,8 @@
 # Hive-Partitions
 ## *Task* 
 #### Generate a datafile with 500 columns and 50000 rows, atleast 3 String columns and a Date column. Create Hive tables and partitions using the datafile.
+## Project Description
+##### To create a sample dataset for Hospital Outpatients Visitation,  focusing on City, Name, Sex and Visitdate attributes, and creating table partitions on Visitdate.
 
 ### *How to create the dataset?*
 ######  Use code in attached file GenerateDataset to create a csv file with the row and column data using Linux shell scripting.
